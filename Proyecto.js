@@ -3,6 +3,13 @@
 
 let tipo =  parseInt ( prompt (" *-*-* BIENESTAR  PET *-*-* \n\n  Seleccione el Servicio que desea:  \n\n - Opción 1: Paseador de Perros \n  - Opción 2: Hospedaje de su mascota \n - Opción 3: Higiene y Limpieza \n\n -0- Salir" ));
 
+//funcion para calcular el costo del alojamiento
+function calcular (n1){
+
+	return n1*1500;
+}
+	
+
 while (isNaN(tipo) || tipo>3) {
 	tipo = prompt ("Error, ah ingresado una opcion No válida, reintente. \n Les recordamos los servicios prestados: \n\n - Opción 1: Paseador de Perros \n  - Opción 2: Hospedaje de su mascota \n - Opción 3: Higiene y Limpieza \n\n -0- Salir\n Muchas gracias")
 	
@@ -83,7 +90,8 @@ while (tipo == 1 || tipo == 2 || tipo == 3 || tipo ==0){
 							while (isNaN(diasHospedaje)) {
 									diasHospedaje = prompt ("Error, ah ingresado un caracter, debe ingresar un numero")
 							}
-            let costo = diasHospedaje*1500;
+            //llamado a la funcion para calcular el hospedaje
+		let costo = calcular(diasHospedaje);
             alert (nombre1 + " se hospedará "+ diasHospedaje + " dias en nuestras instalaciones \n El costo del serivcio tiene un valor de: $" +costo + "\n \n Muchas gracias" );
 			
 				break;
