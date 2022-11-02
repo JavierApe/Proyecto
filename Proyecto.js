@@ -1,162 +1,246 @@
-//Opciones del servicio que se ofrece
+const traidoDelStorage = localStorage.getItem("usuario");
+const jsonAobjeto = JSON.parse(traidoDelStorage);
 
-let tipo =  parseInt ( prompt (" *-*-* MASCOTEANDO *-*-* \n\n  Seleccione el Servicio que desea:  \n\n - Opción 1: Paseador de Perros \n  - Opción 2: Hospedaje de su mascota \n - Opción 3: Higiene y Limpieza \n\n -0- Salir" ));
+jsonAobjeto[5] = parseInt(jsonAobjeto[5])
+console.log(jsonAobjeto[5])
 
-//funcion para calcular el costo del alojamiento
-function calcular (n1){
-	return n1*1500;
+
+switch (jsonAobjeto[5]) {
+    case 1:
+        Swal.fire('HOLA, Le recordamos que el ultimo registro fue de ALOJAMIENTO')
+        break;
+    case 2:
+        Swal.fire('HOLA, Le recordamos que el ultimo registro fue de ADIESTRAMIENTO')
+        break;
+    case 3:
+        Swal.fire('HOLA, Le recordamos que el ultimo registro fue de PASEO')
+        break;
 }
 
 
-const diasPaseo=[
-    {
-        dia:"LUNES",
-        paseador:"Joaquin",
-        lugar:"Plaza Italia",
-        tiempo: "1.30hs",
-		precio: " $ 1300",
-    },
-    {
-        dia:"MARTES",
-        paseador:"Lautaro",
-        lugar:"Plaza Serrano",
-        tiempo: "1.40hs",
-	precio: " $ 1900",
-    },
-    {
-		dia:"JUEVES",
-        paseador:"Matias",
-        lugar:"Puerto Madero",
-        tiempo: "1.25hs",
-	precio: " $ 1800",
-    },
-    {
-        dia:"VIERNES",
-        paseador:"Ivana",
-        lugar:"Plaza Lezama",
-        tiempo: "1.25hs",
-		precio: " $ 1500",
-    },
-	{
-        dia:"SABADO",
-        paseador:"Martin",
-        lugar:"Plaza Congreso",
-        tiempo: "1.35hs",
-	precio: " $ 2100",
-    },
-];
+//Botones
+let botonUno = document.getElementById("boton1");
+let botonDos = document.getElementById("boton2");
+let botonTres = document.getElementById("boton3");
 
-//Valido que las opciones sean las que se pueden elegir
+//Contenedores o divs
+let contenedorUno = document.getElementById("div1");
+let contenedorDos = document.getElementById("div2");
+let contenedorTres = document.getElementById("div3");
 
-while (isNaN(tipo) || tipo>3) {
-	tipo = prompt ("Error, ah ingresado una opcion No válida, reintente. \n Les recordamos los servicios prestados: \n\n - Opción 1: Paseador de Perros \n  - Opción 2: Hospedaje de su mascota \n - Opción 3: Higiene y Limpieza \n\n -0- Salir\n Muchas gracias")
+const datos = [];
+//let resumen = document.getElementById("datosCargados")
+
+botonUno.addEventListener("click", () => {
+    mostrarDiv(contenedorUno);
+})
+botonDos.addEventListener("click", () => {
+    mostrarDiv(contenedorDos);
+})
+botonTres.addEventListener("click", () => {
+    mostrarDiv(contenedorTres);
+})
+
+function mostrarDiv(div) {
+    if (div.classList.contains("oculto")) {
+        div.classList.remove("oculto");//Muestra el div
+    } else {
+        div.classList.add("oculto");
+    }
 }
 
-tipo = parseInt(tipo);
+//vairables Div Paseo
+let nombreP = document.getElementById("nombreP");
+let telefonoP = document.getElementById("telefonoP");
+let nomMascotaP = document.getElementById("nomMascotaP");
+let razaP = document.getElementById("razaP");
+let diaP = document.getElementById("diaP");
 
-if (tipo == 1 || tipo == 2 || tipo == 3 ){
 
-//voy preguntando y cargando los datos de la mascota en un array con el metodo PUSH
 
-const datosMascota = [];
-if (tipo !=0){
 
-	    datosMascota.push(prompt("Ingrese Nombre de Su Mascota"))
-		datosMascota[0] = datosMascota[0].toLocaleUpperCase()
-		
-		let edad = (prompt(" Ingrese la edad de: "+ datosMascota[0]));
-		while (isNaN(edad)) {
-							edad = prompt ("Error, ah ingresado un caracter, debe ingresar un numero")
-							}
-		while (edad>15 || (isNaN(edad))){
-			edad = prompt ("Error, no puede tener "+edad+ " años su mascota (menos de 15), o colocaste un caracter en la edad - Reingresa bien la edad please..")
-		}
-		datosMascota.push(edad)
-		datosMascota.push(prompt("Ingrese la Raza o Similar de Su Mascota "))
-	}		
-	   	
-switch (tipo){
-		
-	case 1:
-					
-            let dias = prompt ("*-*-* PASEO DE MASCOTAS *-*-*    \n Escriba el dia que desea: \n Los dias que se realizan paseos son: \nLunes \nMartes \nJueves \nViernes \nSabados \n - esc - para Salir *-*-* ");
-            dias = dias.toLocaleUpperCase();
-			
-			while (dias!= "LUNES" && dias!="MARTES" && dias!="JUEVES" && dias !="VIERNES" && dias != "SABADO" && dias != "ESC"){
-				console.log (dias)
-				dias = prompt ("*** ERROR *** \n\n No ah ingresado dia correcto, ni ESC para terminar, vuelva a intentar (recuerde, dias disponibles: Lunes, Martes, Jueves, Viernes y Sábado) ");
-				dias = dias.toLocaleUpperCase();
-				console.log (dias +"  * prueba")
-			}
-			
-			if (dias === "ESC"){
-				alert ("MuchasSSSS gracias ")
-				break;	
-			}
-						
-				//Funcion Sup Find para mostrar los datos del Dia de paseo
 
-				const encontrado = diasPaseo.find((diasP) =>diasP.dia === dias);
-				alert ("Su mascota: " + datosMascota[0] + " Paseara el dia: " + encontrado.dia + "\n el Paseador sera: "+ encontrado.paseador + "\n Dicho paseo se realizará por: "+ encontrado.lugar +"\n El costo del paseo, asciende a: " + encontrado.precio + "\n * Muchas gracias *" )
 
-				//console.log (encontrado);
-				
-			break;
-			 
-        case 2:
-				
-            let diasHospedaje = parseInt ( prompt ("*-*-*- HOSPEDAJE DE MASCOTAS *-*-*- \n \nCuantos dias desea Hospedar a su mascota? - (1 a 30 dias)"))
+//variables Div Guarderia
+let nombreG = document.getElementById("nombreG");
+let telefonoG = document.getElementById("telefonoG");
+let nomMascotaG = document.getElementById("nomMascotaG");
+let diasAlojamiento = document.getElementById("diasAlojamiento");
+let razaG = document.getElementById("razaG");
 
-						while (isNaN(diasHospedaje)) {
-							diasHospedaje = prompt ("Usted ah ingresado un caracter, debe ingresar un numero")
-					}
-						while (diasHospedaje >30 || diasHospedaje < 0){
-						 diasHospedaje = parseInt (prompt ("Error en el ingreso, debe ingresar un numero entre 0 y 30 "));
-								}
-							
-							// valido que no sean caracteres
+// variables div Adiestramiento
+let nombreA = document.getElementById("nombreA");
+let telefonoA = document.getElementById("telefonoA");
+let nomMascotaA = document.getElementById("nomMascotaA");
+let edad = document.getElementById("edad");
+let razaA = document.getElementById("razaA");
 
-							while (isNaN(diasHospedaje)) {
-									diasHospedaje = prompt ("Error, ah ingresado un caracter, debe ingresar un numero")
-							}
+//tomo los botones enviar
+let enviarA = document.getElementById("enviar");
+let enviarP = document.getElementById("enviarP");
+let enviarG = document.getElementById("enviarG");
+
+//evento Click del boton enviar PASEO
+enviarP.addEventListener("click", () => {
+    datos.push(nombreP.value, telefonoP.value, nomMascotaP.value, razaP.value, diaP.value, id = "3")
+    //resumen.value = (datos)
+    
+    localStorage.setItem("usuario", JSON.stringify(datos));
+
+    Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'Your work has been saved',
+        showConfirmButton: false,
+        timer: 1900
+    })
+
+    while (datos.length > 0) {
+        datos.pop();
+    }
+    
+    //cargo un resumen de los datos guardados en el STORAGE
+    let ncargado = document.getElementById("nombreCargado");
+    let telcargado = document.getElementById("telCargado")
+    let nmascota = document.getElementById("nmc")
+    let raza = document.getElementById("razaR")
+    let almacenados = JSON.parse(localStorage.getItem("usuario"));
+    //console.log (almacenados)
+    //console.log (almacenados.length)
+    ncargado.value= (almacenados[0])
+    telcargado.value =(almacenados[1])
+    nmascota.value =(almacenados[2])
+    raza.value = (almacenados[3])
+   
+
+
+    nombreP.value = ""
+    telefonoP.value = ""
+    nomMascotaP.value = ""
+    razaP.value = ""
+    diaP.value = ""
+
+})
+
+
+
+
+//evento Click del boton enviar GUARDERIA
+enviarG.addEventListener("click", () => {
+
+    //con el If, calculo segun los dias de alojamiento, el valor total y pusheo segun ese valor
+
+    if (diasAlojamiento.value > 1 && diasAlojamiento.value < 6) {
+        datos.push(nombreG.value, telefonoG.value, nomMascotaG.value, diasAlojamiento.value * 900, razaG.value, id = "1")
+        console.log(datos)
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Your work has been saved',
+            showConfirmButton: false,
+            timer: 1900
+        })
+    }
+    if (diasAlojamiento.value > 5 && diasAlojamiento.value < 16) {
+        datos.push(nombreG.value, telefonoG.value, nomMascotaG.value, diasAlojamiento.value * 800, razaG.value, id = "1")
+        console.log(datos)
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Your work has been saved',
+            showConfirmButton: false,
+            timer: 1900
+        })
+    }
+    if (diasAlojamiento.value > 16 && diasAlojamiento.value < 26) {
+        datos.push(nombreG.value, telefonoG.value, nomMascotaG.value, diasAlojamiento.value * 700, razaG.value, id = "1")
+        console.log(datos);
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Your work has been saved',
+            showConfirmButton: false,
+            timer: 1900
+        })
+
+    }
+
+    if (diasAlojamiento.value > 26 || diasAlojamiento.value < 1) {
+
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Error en el Ingreso de los dias. Ingrese entre 1 y 25',
             
-							//llamado a la funcion para calcular el hospedaje
+        })
 
-							let costo = calcular(diasHospedaje);
+    }
+    resumen.value = (datos)
+    localStorage.setItem("usuario", JSON.stringify(datos));
 
-            alert (datosMascota[0] + " se hospedará "+ diasHospedaje + " dias en nuestras instalaciones \n El costo del serivcio tiene un valor de: $" +costo + "\n \n Muchas gracias" );
-			
-				break;
+    while (datos.length > 0) {
+        datos.pop();
+    }
 
-        case 3:
-            let higiene =  parseInt (prompt (" *-*-* HIGIENE Y LIMPIEZA *-*-*- \n \n SELECCIONE: \n 1) Baño \n 2) Corte de Pelo \n 3) Limpieza Dental \n 0) para salir"));
+    //cargo un resumen de los datos guardados en el STORAGE
+    let ncargado = document.getElementById("nombreCargado");
+    let telcargado = document.getElementById("telCargado")
+    let nmascota = document.getElementById("nmc")
+    let raza = document.getElementById("razaR")
+    let almacenados = JSON.parse(localStorage.getItem("usuario"));
+    console.log (almacenados)
+    //console.log (almacenados.length)
+    ncargado.value= (almacenados[0])
+    telcargado.value =(almacenados[1])
+    nmascota.value =(almacenados[2])
+    raza.value = (almacenados[4])
 
 
-						while (higiene !=1 & higiene !=2 && higiene !=3  && higiene !=0) {
-							higiene =   parseInt (prompt ("No ha seleccionado las opciones correctas, recuerde: \n1 - Baño \n 2 - Corte de Pelo \n 3 - Limpieza Dental \n 0 - para salir" ));
-						}
-               switch (higiene){
-                    case 1:
-                        alert (datosMascota[0] + " Realizará un Baño con Shampoo especial para mascotas que dejara su pelo mas brilloso que la melena de Brad Pitt \n \n El Costo de dicho baño es de tan solo: $6.500\n Muchas gracias \n \n pd: donde se metio su mascota, tenia una roña!!" );
-                        console.log ("BAÑO")
-                     break;
+    nombreG.value = ""
+    telefonoG.value = ""
+    nomMascotaG.value = ""
+    razaG.value = ""
+    diasAlojamiento.value = ""
+})
 
-                    case 2:
-                        alert (datosMascota[0]+ " Va a tener un Corte de Pelo especializado, en el barrio lo llamaran el Ricky Martin de los "+ datosMascota[2] +"\n \n El costo del corte es de: $ 4.300 \n\n Muchas gracias");
-                        console.log ("CORTE")
-                        break;
-                    case 3:
-                        alert (datosMascota[0] + " Recibira una limpeza dental de excelencia, sus dientes quedaran Perla Perla \n \n El valor del servicio asciende a: $3.500 \n\n Muchas gracias ")
-                        console.log ("DENTISTA")
-                        break;
-																			
-                			}
-		            break;
-		
-					} 
-		
-} else {
-	if (tipo == 0){
-		alert ("MUCHAS GRACIAS !!!")
-	}
-}			
+////evento Click del boton enviar ADIESTRAMIENTO
+enviarA.addEventListener("click", () => {
+
+     datos.push(nombreA.value, telefonoA.value, nomMascotaA.value, edad.value, razaA.value, id = "2")
+    resumen.value = (datos)
+    console.log(resumen.value)
+    Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'Your work has been saved',
+        showConfirmButton: false,
+        timer: 1900
+    })
+    localStorage.setItem("usuario", JSON.stringify(datos));
+    while (datos.length > 0) {
+        datos.pop();
+    }
+
+    //cargo un resumen de los datos guardados en el STORAGE
+    let ncargado = document.getElementById("nombreCargado");
+    let telcargado = document.getElementById("telCargado")
+    let nmascota = document.getElementById("nmc")
+    let raza = document.getElementById("razaR")
+    let almacenados = JSON.parse(localStorage.getItem("usuario"));
+    //console.log (almacenados)
+    //console.log (almacenados.length)
+    ncargado.value= (almacenados[0])
+    telcargado.value =(almacenados[1])
+    nmascota.value =(almacenados[2])
+    raza.value = (almacenados[4])
+
+
+
+    nombreA.value = ""
+    telefonoA.value = ""
+    nomMascotaA.value = ""
+    razaA.value = ""
+    edad.value = ""
+})
+
+
