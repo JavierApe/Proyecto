@@ -1,22 +1,180 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> *-*- MASCOTEANDO *-*-*   </title>
-   </head>
-<body bgcolor="#80DEEA">
-    <section id="principal">
-        <article id="articulo">
-            <h1 id="titulo"> MASCOTEANDO </h1>
-            <h3>version Beta (2da pre-entrega)...</h3>
-           
-        </article>
-        <br>              
-    </section>
-    <img src = "https://www.experta.com.ar/blogg/wp-content/uploads/sites/2/2019/01/mascotas.jpg" alt = "mascotas">+
-    <h1> ***** MASCOTEANDO *****</h1>
-    <script src="Proyecto.js"></script>
+    <link rel="stylesheet" href="style.css">
+    
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <title id="titulo"> SERVICIOS PARA MASCOTAS </title>
+    <link rel="icon" href="imagen/icono.ico">
+
+</head>
+
+<body bgcolor="#CED8F6">
+    <div class="contenedor">
+        <header>
+            <nav>
+                <ul>
+                    <li>Inicio</li>
+                    <li>Servicios</li>
+                    <li>Contacto</li>
+                    <li>Nosotros</li>
+
+                </ul>
+            </nav>
+        </header>
+        <main>
+
+            <br>
+            <section>
+                <p><b>N</b>uestro negocio comienza como un emprendimiento familiar a mediados del año 2013, dedicada
+                    solamente al <b> Paseo para mascotas</b>. Transcurridos dos años de atención y crecimiento
+                    ininterrumpido, se suma a la venta de productos nuestra área de servicios de <b> Educación y
+                        Adiestramiento Canino.</b>
+                    Gracias a la constante búsqueda por mejorar nuestros servicios y por pedido de muchos clientes, en
+                    el
+                    año 2016 sumamos <b> Guardería Canina</b>.
+                    La comunicación con los clientes es realizada por sus propios dueños, lo que permite tener un
+                    contacto
+                    directo y satisfacer de manera precisa sus requerimientos y necesidades.</p>
+            </section>
+            <section class="flex-container separado">
+
+                <!-- Contenedor 1 -->
+                <div class="flex-container columna">
+                    <img class="imgPrincipal" src="/imagen/paseo.jpg" alt="">
+                    <button class="boton" id="boton1">PASEO</button>
+                    <div class="divBoton oculto" id="div1">
+                        <h1>Paseo de Mascotas</h1>
+                        <form id="formulario">
+                            <h5>Paseo de Mascotas</h5>
+                            <br>
+
+                            <h5>Dias de paseo: Lunes, Martes, Miercoles, <br> Viernes y Sabado</h5>
+                            <br>
+                            <h5> Agregue los datos al siguiente formulario de contacto. </h2>
+                                <br>
+                                <input id="nombreP" type="text" placeholder="Ingrese su nombre">
+                                <!--  -->
+                                <br>
+                                <input id="telefonoP" type="number" placeholder="Telefono">
+                                <!--  -->
+                                <br>
+                                <input id="nomMascotaP" type="text" placeholder="Nombre de la mascota">
+                                <!--  -->
+                                <br>
+                                <input id="razaP" type="text" placeholder="Raza">
+                                <br>
+                                <input id="diaP" type="text" placeholder="Dia de Paseo:">
+                                <br> <br>
+                                <input type="button" class="btn btn-danger" value="Guardar" id="enviarP">
+
+
+
+                        </form>
+                    </div>
+                </div>
+                <!-- Contenedor 2 -->
+                <div class="flex-container columna">
+                    <img class="imgPrincipal" src="/imagen/alojamiento.jpg" alt="">
+                    <button class="boton" id="boton2">GUARDAERIA</button>
+                    <div class="divBoton oculto" id="div2">
+                        <h1>Guarderia de Mascotas</h1>
+                        <form id="formulario">
+                            <h5> Agregue los datos al siguiente formulario de contacto. </h2>
+                                <br>
+                                <h5>Valores: $900 de 1 a 5 dias</h2>
+                                    <br>
+                                    <h5>Valores: $800 de 6 a 15 dias</h2>
+                                        <br>
+                                        <h5>Valores: $700 de 16 a 25 dias</h2>
+
+                                            <br>
+                                            <input id="nombreG" type="text" placeholder="Ingrese su nombre">
+                                            <!--  -->
+                                            <br>
+                                            <input id="telefonoG" type="number" placeholder="Telefono">
+                                            <!--  -->
+                                            <br>
+                                            <input id="nomMascotaG" type="text" placeholder="Nombre de la mascota">
+                                            <!--  -->
+                                            <br>
+                                            <input id="razaG" type="text" placeholder="Raza">
+                                             <br>
+                                            <input id="diasAlojamiento" type="number" placeholder="Dias de alojamiento">
+                                            <br> <br>
+
+                                            <input type="button" class="btn btn-danger" value="Guardar" id="enviarG">
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Contenedor 3 -->
+                <div class="flex-container columna">
+                    <img class="imgPrincipal" src="/imagen/adiestramiento.jpg" alt="">
+                    <button class="boton" id="boton3">ADIESTRAMIENTO</button>
+                    <div class="divBoton oculto" id="div3">
+                        <h1>Adiestramiento de Mascotas</h1>
+                        <form id="formulario">
+                            <h5> Agregue los datos al siguiente formulario de contacto. </h2>
+                                <br>
+                                <h5>El valor del adiestramiento dependera de la raza,<br> tiempo de trabajo. La hora
+                                    $1500
+                                    </h2>
+                                    <br>
+                                    <input id="nombreA" type="text" placeholder="Ingrese su nombre">
+                                    <!--  -->
+                                    <br>
+                                    <input id="telefonoA" type="number" placeholder="Telefono">
+                                    <!--  -->
+                                    <br>
+                                    <input id="nomMascotaA" type="text" placeholder="Nombre de la mascota">
+                                    <!--  -->
+                                    <br>
+                                    <input id="razaA" type="text" placeholder="Raza">
+                                     <br>
+                                    <input id="edad" type="text" placeholder="Edad de la mascota">
+                                    <br><br>
+                                    <input type="button" class="btn btn-danger" value="Guardar" id="enviar">
+                        </form>
+                    </div>
+                </div>
+            </section>
+            <section >
+                <div id="resumen">
+                    <h2> Datos Cargados </h2>
+                    
+                    <input id="datosCargados" class="inputResumen oculto" type="text">
+                    <br><br>
+                    <input type="text" class="resumen" value ="NOMBRE"> <br>
+                    <input id="nombreCargado" type="text">
+                    <br><br>
+                    <input type="text"class="resumen"  value ="TELEFONO de Contacto"><br>
+                    <input type="text" id="telCargado">
+                    <br><br>
+                    <input type="text" class="resumen" value="Nombre de MASCOTA"> <br>
+                    <input type="text" id="nmc">
+                    <br><br>
+                    <input type="text" class="resumen" value="RAZA de MASCOTA"> <br>
+                    <input type="text" id="razaR">
+                    <hr><br>
+                </div>
+            </section>
+
+    </div>
+    </main>
+
+    <footer>
+        <h4>Copyright - Todos los derechos reservados</h4>
+        <p>Seguimos en nuestras redes</p>
+        <a href="#">Instagram</a>
+        <a href="#">Facebook</a>
+        <a href="#">Twiter</a>
+    </footer>
+    <script src="proyecto.js"></script>
 </body>
+
 </html>
