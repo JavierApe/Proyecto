@@ -19,10 +19,6 @@ fetch(url)
     )
     .catch(err => console.log("Solicitud fallida", err))// Capturo errores
 
-
-// let celsius=data.temp_f
-// let bodys = ""
-
 switch (jsonAobjeto[5]) {
     case 1:
         Swal.fire('HOLA, Le recordamos que  el ultimo registro fue de ALOJAMIENTO')
@@ -51,54 +47,39 @@ const datos = [];
 botonUno.addEventListener("click", () => {
     mostrarDiv(contenedorUno);
     verDivRes(res)
-    
-  
+
 })
 botonDos.addEventListener("click", () => {
     mostrarDiv(contenedorDos);
     verDivRes(res)
-    
-    })
+
+})
 botonTres.addEventListener("click", () => {
     mostrarDiv(contenedorTres);
     verDivRes(res)
 })
 
-function verDivRes(div){
+function verDivRes(div) {
     if (div.classList.contains("oculto")) {
 
         console.log("esta oculto");//Muestra el div
     } else {
         div.classList.add("oculto");//oculta el div
-       
+
     }
 }
-
-
-
 
 function mostrarDiv(div) {
     document.getElementById("nombreCargado").value = ""
     document.getElementById("telCargado").value = ""
     document.getElementById("nmc").value = ""
     document.getElementById("razaR").value = ""
-    document.getElementById("costo").value = "" 
+    document.getElementById("costo").value = ""
     if (div.classList.contains("oculto")) {
         div.classList.remove("oculto");//Muestra el div
     } else {
         div.classList.add("oculto");//oculta el div
-       
-    }
-}
 
-function validarCampo(campo) {
-    if (campo.length == 0) {
-        Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'Error en el Ingreso de los datos'
-
-        })
     }
 }
 
@@ -130,8 +111,8 @@ let enviarG = document.getElementById("enviarG");
 
 //evento Click del boton enviar PASEO
 enviarP.addEventListener("click", () => {
-       
-       if (nombreP.value.match(numeros) || nomMascotaP.value.match(numeros) || razaP.value.match(numeros) || diaP.value.match(numeros)) {
+
+    if (nombreP.value.match(numeros) || nomMascotaP.value.match(numeros) || razaP.value.match(numeros) || diaP.value.match(numeros)) {
 
         Swal.fire({
             title: 'Error',
@@ -147,9 +128,8 @@ enviarP.addEventListener("click", () => {
         razaP.value = ""
         diaP.value = ""
         contenedorUno.classList.add("oculto")
-        
-    }
 
+    }
 
     else {
 
@@ -169,14 +149,12 @@ enviarP.addEventListener("click", () => {
             razaP.value = ""
             diaP.value = ""
             contenedorUno.classList.add("oculto")
-        } else
-             
-        {
+        } else {
             //validacion de los dias de paseo
             diaPaseo = diaP.value.toLocaleUpperCase();
-            
-            if  (diaPaseo!= "LUNES" && diaPaseo!="MARTES" && diaPaseo!="JUEVES" && diaPaseo !="VIERNES" && diaPaseo != "SABADO" && diaPaseo != "ESC"){
-               
+
+            if (diaPaseo != "LUNES" && diaPaseo != "MARTES" && diaPaseo != "JUEVES" && diaPaseo != "VIERNES" && diaPaseo != "SABADO" && diaPaseo != "ESC") {
+
                 Swal.fire({
                     title: 'Error en los dias de Paseo',
                     text: 'Debe elegir: Lunes, Martes, Jueves, Viernes o Sabado',
@@ -190,54 +168,54 @@ enviarP.addEventListener("click", () => {
                 nomMascotaP.value = ""
                 razaP.value = ""
                 diaP.value = ""
-                contenedorUno.classList.add("oculto")    
+                contenedorUno.classList.add("oculto")
 
             } else {
-            mostrarDiv(res)
-            datos.push(nombreP.value, telefonoP.value, nomMascotaP.value, razaP.value, diaP.value, id = "3")
-            
-            localStorage.setItem("usuario", JSON.stringify(datos));
-            
-            Swal.fire({
-                position: 'top-end',
-                icon: 'success',
-                title: 'Su informacion ha sido guardada',
-                showConfirmButton: false,
-                timer: 1900
-            })
+                mostrarDiv(res)
+                datos.push(nombreP.value, telefonoP.value, nomMascotaP.value, razaP.value, diaP.value, id = "3")
 
-            while (datos.length > 0) {
-                datos.pop();
+                localStorage.setItem("usuario", JSON.stringify(datos));
+
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Su informacion ha sido guardada',
+                    showConfirmButton: false,
+                    timer: 1900
+                })
+
+                while (datos.length > 0) {
+                    datos.pop();
+                }
+
+                //cargo un resumen de los datos guardados en el STORAGE
+                let ncargado = document.getElementById("nombreCargado");
+                let telcargado = document.getElementById("telCargado")
+                let nmascota = document.getElementById("nmc")
+                let raza = document.getElementById("razaR")
+                let costo = document.getElementById("costo")
+                let almacenados = JSON.parse(localStorage.getItem("usuario"));
+
+                ncargado.value = (almacenados[0])
+                telcargado.value = (almacenados[1])
+                nmascota.value = (almacenados[2])
+                raza.value = (almacenados[3])
+                costo.value = ("$1.000")
+
+                nombreP.value = ""
+                telefonoP.value = ""
+                nomMascotaP.value = ""
+                razaP.value = ""
+                diaP.value = ""
+                contenedorUno.classList.add("oculto")
             }
-
-            //cargo un resumen de los datos guardados en el STORAGE
-            let ncargado = document.getElementById("nombreCargado");
-            let telcargado = document.getElementById("telCargado")
-            let nmascota = document.getElementById("nmc")
-            let raza = document.getElementById("razaR")
-            let costo = document.getElementById("costo")
-            let almacenados = JSON.parse(localStorage.getItem("usuario"));
-           
-            ncargado.value = (almacenados[0])
-            telcargado.value = (almacenados[1])
-            nmascota.value = (almacenados[2])
-            raza.value = (almacenados[3])
-            costo.value = ("$1.000")
-
-            nombreP.value = ""
-            telefonoP.value = ""
-            nomMascotaP.value = ""
-            razaP.value = ""
-            diaP.value = ""
-            contenedorUno.classList.add("oculto")
         }
     }
-}
 })
 
 //evento Click del boton enviar GUARDERIA
 enviarG.addEventListener("click", () => {
-
+    //valido que los campos de texto no contengan numeros utilizando una expresio regular
     if (nombreG.value.match(numeros) || nomMascotaG.value.match(numeros) || razaG.value.match(numeros)) {
 
         Swal.fire({
@@ -257,106 +235,105 @@ enviarG.addEventListener("click", () => {
     }
 
     else {
-
-    if (nombreG.value == "" || telefonoG.value == "" || nomMascotaG.value == "" || razaG.value == "" || diasAlojamiento.value == "") {
-
-        Swal.fire({
-            title: 'Error',
-            text: 'Debe completar todos los Campos',
-            imageUrl: '/imagen/homero.jpg',
-            imageWidth: 400,
-            imageHeight: 200,
-            imageAlt: 'Custom image',
-        })
-        nombreG.value = ""
-        telefonoG.value = ""
-        nomMascotaG.value = ""
-        razaG.value = ""
-        diasAlojamiento.value = ""
-        contenedorDos.classList.add("oculto")
-
-    } else {
-
-        //con los If, calculo segun los dias de alojamiento, el valor total y pusheo segun ese valor
-
-        if (diasAlojamiento.value > 1 && diasAlojamiento.value < 6) {
-            datos.push(nombreG.value, telefonoG.value, nomMascotaG.value, diasAlojamiento.value * 900, razaG.value, id = "1")
-            mostrarDiv(res)
-            Swal.fire({
-                position: 'top-end',
-                icon: 'success',
-                title: 'Su Información ha sido guardada',
-                showConfirmButton: false,
-                timer: 1900
-            })
-        }
-        if (diasAlojamiento.value > 5 && diasAlojamiento.value < 16) {
-            datos.push(nombreG.value, telefonoG.value, nomMascotaG.value, diasAlojamiento.value * 800, razaG.value, id = "1")
-            mostrarDiv(res)
-            Swal.fire({
-                position: 'top-end',
-                icon: 'success',
-                title: 'Su Información ha sido guardada',
-                showConfirmButton: false,
-                timer: 1900
-            })
-        }
-        if (diasAlojamiento.value > 16 && diasAlojamiento.value < 26) {
-            datos.push(nombreG.value, telefonoG.value, nomMascotaG.value, diasAlojamiento.value * 700, razaG.value, id = "1")
-            mostrarDiv(res)
-            Swal.fire({
-                position: 'top-end',
-                icon: 'success',
-                title: 'Su Información ha sido guardada',
-                showConfirmButton: false,
-                timer: 1900
-            })
-        }
-
-        if (diasAlojamiento.value > 26 || diasAlojamiento.value < 1) {
+        //valido que los campos no esten vacios
+        if (nombreG.value == "" || telefonoG.value == "" || nomMascotaG.value == "" || razaG.value == "" || diasAlojamiento.value == "") {
 
             Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Error en el Ingreso de los datos',
-
+                title: 'Error',
+                text: 'Debe completar todos los Campos',
+                imageUrl: '/imagen/homero.jpg',
+                imageWidth: 400,
+                imageHeight: 200,
+                imageAlt: 'Custom image',
             })
+            nombreG.value = ""
+            telefonoG.value = ""
+            nomMascotaG.value = ""
+            razaG.value = ""
+            diasAlojamiento.value = ""
+            contenedorDos.classList.add("oculto")
+
+        } else {
+
+            //con los If, calculo segun los dias de alojamiento, el valor total y pusheo segun ese valor
+
+            if (diasAlojamiento.value > 1 && diasAlojamiento.value < 6) {
+                datos.push(nombreG.value, telefonoG.value, nomMascotaG.value, diasAlojamiento.value * 900, razaG.value, id = "1")
+                mostrarDiv(res)
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Su Información ha sido guardada',
+                    showConfirmButton: false,
+                    timer: 1900
+                })
+            }
+            if (diasAlojamiento.value > 5 && diasAlojamiento.value < 16) {
+                datos.push(nombreG.value, telefonoG.value, nomMascotaG.value, diasAlojamiento.value * 800, razaG.value, id = "1")
+                mostrarDiv(res)
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Su Información ha sido guardada',
+                    showConfirmButton: false,
+                    timer: 1900
+                })
+            }
+            if (diasAlojamiento.value > 16 && diasAlojamiento.value < 26) {
+                datos.push(nombreG.value, telefonoG.value, nomMascotaG.value, diasAlojamiento.value * 700, razaG.value, id = "1")
+                mostrarDiv(res)
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Su Información ha sido guardada',
+                    showConfirmButton: false,
+                    timer: 1900
+                })
+            }
+
+            if (diasAlojamiento.value > 26 || diasAlojamiento.value < 1) {
+
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Error en el Ingreso de los datos',
+
+                })
+            }
+
+            resumen.value = (datos)
+            localStorage.setItem("usuario", JSON.stringify(datos));
+
+            while (datos.length > 0) {
+                datos.pop();
+            }
+
+            //cargo un resumen de los datos guardados en el STORAGE
+            let ncargado = document.getElementById("nombreCargado");
+            let telcargado = document.getElementById("telCargado")
+            let nmascota = document.getElementById("nmc")
+            let raza = document.getElementById("razaR")
+            let costo = document.getElementById("costo")
+            let almacenados = JSON.parse(localStorage.getItem("usuario"));
+            ncargado.value = (almacenados[0])
+            telcargado.value = (almacenados[1])
+            nmascota.value = (almacenados[2])
+            raza.value = (almacenados[4])
+            costo.value = parseFloat(diasAlojamiento.value * 2500);
+            nombreG.value = ""
+            telefonoG.value = ""
+            nomMascotaG.value = ""
+            razaG.value = ""
+            diasAlojamiento.value = ""
+            contenedorDos.classList.add("oculto")
         }
-        validarCampo(nombreG.value);
-
-        resumen.value = (datos)
-        localStorage.setItem("usuario", JSON.stringify(datos));
-
-        while (datos.length > 0) {
-            datos.pop();
-        }
-
-        //cargo un resumen de los datos guardados en el STORAGE
-        let ncargado = document.getElementById("nombreCargado");
-        let telcargado = document.getElementById("telCargado")
-        let nmascota = document.getElementById("nmc")
-        let raza = document.getElementById("razaR")
-        let costo = document.getElementById("costo")
-        let almacenados = JSON.parse(localStorage.getItem("usuario"));
-        ncargado.value = (almacenados[0])
-        telcargado.value = (almacenados[1])
-        nmascota.value = (almacenados[2])
-        raza.value = (almacenados[4])
-        costo.value = parseFloat(diasAlojamiento.value * 2500);
-        nombreG.value = ""
-        telefonoG.value = ""
-        nomMascotaG.value = ""
-        razaG.value = ""
-        diasAlojamiento.value = ""
-        contenedorDos.classList.add("oculto")
     }
-}
 })
 
 ////evento Click del boton enviar ADIESTRAMIENTO
 enviarA.addEventListener("click", () => {
-    
-    if (nombreA.value.match(numeros) || nomMascotaA.value.match(numeros) || razaA.value.match(numeros) ) {
+    //valido que los campos de texto no tengan numeros con una expresion regular
+    if (nombreA.value.match(numeros) || nomMascotaA.value.match(numeros) || razaA.value.match(numeros)) {
 
         Swal.fire({
             title: 'Error',
@@ -374,32 +351,13 @@ enviarA.addEventListener("click", () => {
         contenedorTres.classList.remove("oculto")
     }
 
-
     else {
-
-    if (nombreA.value == "" || telefonoA.value == "" || nomMascotaA.value == "" || edad.value == "" || razaA.value == "") {
-        console.log(nombreA.value);
-        Swal.fire({
-            title: 'Error',
-            text: 'Debe completar todos los Campos',
-            imageUrl: '/imagen/homero.jpg',
-            imageWidth: 400,
-            imageHeight: 200,
-            imageAlt: 'Custom image',
-        })
-            nombreA.value = ""
-        telefonoA.value = ""
-        nomMascotaA.value = ""
-        razaA.value = ""
-        edad.value = ""
-        contenedorTres.classList.add("oculto")
-    } else {
-
-        if (edad.value <1 || edad.value>17){
-            console.log(edad.value);
+        //valido que los campos no esten vacios
+        if (nombreA.value == "" || telefonoA.value == "" || nomMascotaA.value == "" || edad.value == "" || razaA.value == "") {
+            console.log(nombreA.value);
             Swal.fire({
-                title: 'Que edad tiene su mascota???',
-                text: 'La edad debe ser entre 0 y 17 años',
+                title: 'Error',
+                text: 'Debe completar todos los Campos',
                 imageUrl: '/imagen/homero.jpg',
                 imageWidth: 400,
                 imageHeight: 200,
@@ -411,51 +369,67 @@ enviarA.addEventListener("click", () => {
             razaA.value = ""
             edad.value = ""
             contenedorTres.classList.add("oculto")
-
         } else {
+            //valido la edad de la mascota, suele ser entre 1 y 17 años...
+            if (edad.value < 1 || edad.value > 17) {
+                console.log(edad.value);
+                Swal.fire({
+                    title: 'Que edad tiene su mascota???',
+                    text: 'La edad debe ser entre 0 y 17 años',
+                    imageUrl: '/imagen/homero.jpg',
+                    imageWidth: 400,
+                    imageHeight: 200,
+                    imageAlt: 'Custom image',
+                })
+                nombreA.value = ""
+                telefonoA.value = ""
+                nomMascotaA.value = ""
+                razaA.value = ""
+                edad.value = ""
+                contenedorTres.classList.add("oculto")
 
+            } else {
 
+                datos.push(nombreA.value, telefonoA.value, nomMascotaA.value, edad.value, razaA.value, id = "2")
+                resumen.value = (datos)
+                mostrarDiv(res)
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Su Información ha sido guardada',
+                    showConfirmButton: false,
+                    timer: 1900
+                })
+                localStorage.setItem("usuario", JSON.stringify(datos));
+                while (datos.length > 0) {
+                    datos.pop();
+                }
 
-        datos.push(nombreA.value, telefonoA.value, nomMascotaA.value, edad.value, razaA.value, id = "2")
-        resumen.value = (datos)
-        mostrarDiv(res)
-        Swal.fire({
-            position: 'top-end',
-            icon: 'success',
-            title: 'Su Información ha sido guardada',
-            showConfirmButton: false,
-            timer: 1900
-        })
-        localStorage.setItem("usuario", JSON.stringify(datos));
-        while (datos.length > 0) {
-            datos.pop();
+                //cargo un resumen de los datos guardados en el STORAGE
+                let ncargado = document.getElementById("nombreCargado");
+                let telcargado = document.getElementById("telCargado")
+                let nmascota = document.getElementById("nmc")
+                let raza = document.getElementById("razaR")
+                let costo = document.getElementById("costo")
+                let almacenados = JSON.parse(localStorage.getItem("usuario"));
+                ncargado.value = (almacenados[0])
+                telcargado.value = (almacenados[1])
+                nmascota.value = (almacenados[2])
+                raza.value = (almacenados[4])
+                costo.value = "por dia -> $1.200/hora"
+
+                nombreA.value = ""
+                telefonoA.value = ""
+                nomMascotaA.value = ""
+                razaA.value = ""
+                edad.value = ""
+                contenedorTres.classList.add("oculto")
+
+            }
         }
-
-        //cargo un resumen de los datos guardados en el STORAGE
-        let ncargado = document.getElementById("nombreCargado");
-        let telcargado = document.getElementById("telCargado")
-        let nmascota = document.getElementById("nmc")
-        let raza = document.getElementById("razaR")
-        let costo = document.getElementById("costo")
-        let almacenados = JSON.parse(localStorage.getItem("usuario"));
-        ncargado.value = (almacenados[0])
-        telcargado.value = (almacenados[1])
-        nmascota.value = (almacenados[2])
-        raza.value = (almacenados[4])
-        costo.value = "por dia -> $1.200/hora"
-       
-
-        nombreA.value = ""
-        telefonoA.value = ""
-        nomMascotaA.value = ""
-        razaA.value = ""
-        edad.value = ""
-        contenedorTres.classList.add("oculto")
-
-    }
-}
     }
 
 })
+
 
 
