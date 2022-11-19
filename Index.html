@@ -6,10 +6,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title id="titulo"> SERVICIOS PARA MASCOTAS </title>
     <link rel="icon" href="imagen/icono.ico">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+
+  
+</body>
+</html>
 
 </head>
 
@@ -18,12 +22,15 @@
         <header>
             <nav>
                 <ul>
-                    <li>Inicio</li>
-                    <li>Servicios</li>
-                    <li>Contacto</li>
-                    <li>Nosotros</li>
-
-                </ul>
+                    <li class ="clima">Inicio</li>
+                    <li class ="clima" >Servicios</li>
+                    <li class ="clima" >Contacto</li>
+                    <li class ="clima" >Nosotros</li>
+                                                 
+               </ul>
+                  
+             <marquee width="99%"  behavior="alternate" scrollamount="14"><img  src="/imagen/images.jpg" alt="" /></marquee>
+                <table type="text" id="data" class ="tablaClima" > </table>
             </nav>
         </header>
         <main>
@@ -53,7 +60,7 @@
                             <h5>Paseo de Mascotas</h5>
                             <br>
 
-                            <h5>Dias de paseo: Lunes, Martes, Miercoles, <br> Viernes y Sabado</h5>
+                            <h5>Dias de paseo: Lunes, Martes, Jueves, <br> Viernes y Sabado</h5>
                             <br>
                             <h5> Agregue los datos al siguiente formulario de contacto. </h2>
                                 <br>
@@ -71,8 +78,6 @@
                                 <input id="diaP" type="text" placeholder="Dia de Paseo:">
                                 <br> <br>
                                 <input type="button" class="btn btn-danger" value="Guardar" id="enviarP">
-
-
 
                         </form>
                     </div>
@@ -93,7 +98,7 @@
                                         <h5>Valores: $700 de 16 a 25 dias</h2>
 
                                             <br>
-                                            <input id="nombreG" type="text" placeholder="Ingrese su nombre">
+                                            <input id="nombreG" type="text" placeholder="Ingrese su nombre" required>
                                             <!--  -->
                                             <br>
                                             <input id="telefonoG" type="number" placeholder="Telefono">
@@ -104,7 +109,7 @@
                                             <br>
                                             <input id="razaG" type="text" placeholder="Raza">
                                              <br>
-                                            <input id="diasAlojamiento" type="number" placeholder="Dias de alojamiento">
+                                            <input id="diasAlojamiento" type="number" placeholder="Dias de alojamiento- 1a30">
                                             <br> <br>
 
                                             <input type="button" class="btn btn-danger" value="Guardar" id="enviarG">
@@ -144,26 +149,27 @@
                 </div>
             </section>
             <section >
-                <div id="resumen">
+                <div id="resumen" class="oculto">
                     <h2> Datos Cargados </h2>
                     
                     <input id="datosCargados" class="inputResumen oculto" type="text">
                     <br><br>
                     <input type="text" class="resumen" value ="NOMBRE"> <br>
-                    <input id="nombreCargado" type="text">
+                    <input id="nombreCargado" type="text" readonly> 
                     <br><br>
                     <input type="text"class="resumen"  value ="TELEFONO de Contacto"><br>
-                    <input type="text" id="telCargado">
+                    <input type="text" id="telCargado" readonly>
                     <br><br>
                     <input type="text" class="resumen" value="Nombre de MASCOTA"> <br>
-                    <input type="text" id="nmc">
+                    <input type="text" id="nmc" readonly>
                     <br><br>
                     <input type="text" class="resumen" value="RAZA de MASCOTA"> <br>
-                    <input type="text" id="razaR">
+                    <input type="text" id="razaR" readonly><br><br>
+                    <input type="text" class="resumen" value="COSTO"> <br>
+                    <input type="text" id="costo" readonly>
                     <hr><br>
                 </div>
             </section>
-
     </div>
     </main>
 
