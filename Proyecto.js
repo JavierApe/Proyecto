@@ -1,7 +1,7 @@
 const traidoDelStorage = localStorage.getItem("usuario");
 const jsonAobjeto = JSON.parse(traidoDelStorage);
 jsonAobjeto[5] = parseInt(jsonAobjeto[5])
-const numeros = /^[0-9]$/ // expresion regular para validar campos de textos
+const numeros = /^[0-9]+$/ // expresion regular para validar campos de textos
 const res = document.getElementById("resumen")
 
 //Api de clima cargadno un CP, ID y APP_key para poder acceder a los datos
